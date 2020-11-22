@@ -10,18 +10,10 @@ int main(int argv, char* args[])
     SDL_Window* window = SDL_CreateWindow("Pacman", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_SHOWN);
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
 
-    bool isRunning = false;
+    bool isRunning = true;
 
     //Initialize PNG loading
-    int imgFlags = IMG_INIT_PNG;
-    if( !( IMG_Init( imgFlags ) & imgFlags ) )
-    {
-        cout << "Failed" << endl;
-    }
-    else
-    {
-        isRunning = true;
-    }
+    IMG_Init(IMG_INIT_PNG);
     
     SDL_Event event;
 
