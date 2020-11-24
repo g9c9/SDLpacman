@@ -20,7 +20,11 @@ void Game::Initialize() {
     SDL_Init(SDL_INIT_EVERYTHING);
 
     window = SDL_CreateWindow("Pacman", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_SHOWN);
+    
     renderer = SDL_CreateRenderer(window, -1, 0);
+    //Initialize renderer for window
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    
     pacmanTexture = nullptr;
 
     isRunning = true;
@@ -52,9 +56,13 @@ void Game::Update() {
 }
 
 void Game::Draw() {
+    //Clear screen
     SDL_RenderClear(renderer);
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    
+    //Render texture to screen
+    SDL_RenderCopy(renderer, pacmanTexture, NULL, NULL);
 
+    //Update screen
     SDL_RenderPresent(renderer);
 }
 
