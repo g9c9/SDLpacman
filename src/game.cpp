@@ -21,6 +21,7 @@ void Game::Initialize() {
 
     window = SDL_CreateWindow("Pacman", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_SHOWN);
     renderer = SDL_CreateRenderer(window, -1, 0);
+    pacman = nullptr;
 
     isRunning = true;
 
@@ -67,4 +68,21 @@ void Game::CleanAndQuit() {
     SDL_DestroyWindow(window);
     window = nullptr;
     SDL_Quit();
+}
+
+SDL_Texture* Game::LoadTexture(string path) {
+    SDL_Texture* newTexture = nullptr;
+    
+    SDL_Surface* loadedSurface = IMG_Load(path.c_str());
+    if(loadedSurface == nullptr) {
+        Exit();
+    }
+    else {
+        newTexture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
+        if(newTexture == nullptr) {
+            Exit();
+        }
+        SDL_FreeSurface(loadedSurface);
+    }
+    return newTexture;
 }
