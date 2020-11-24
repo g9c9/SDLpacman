@@ -21,7 +21,7 @@ void Game::Initialize() {
 
     window = SDL_CreateWindow("Pacman", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_SHOWN);
     renderer = SDL_CreateRenderer(window, -1, 0);
-    pacman = nullptr;
+    pacmanTexture = nullptr;
 
     isRunning = true;
 
@@ -30,7 +30,7 @@ void Game::Initialize() {
 }
 
 void Game::LoadContent() {
-
+    pacmanTexture = LoadTexture("Content/pacman.png");
 }
 
 void Game::Update() {
@@ -63,10 +63,18 @@ void Game::Exit() {
 }
 
 void Game::CleanAndQuit() {
+    //Free loaded images
+    SDL_DestroyTexture(pacmanTexture);
+    pacmanTexture = nullptr;
+
+    //Destroy Window
     SDL_DestroyRenderer(renderer);
     renderer = nullptr;
     SDL_DestroyWindow(window);
     window = nullptr;
+
+    //Quit SDL subsystems
+    IMG_Quit();
     SDL_Quit();
 }
 

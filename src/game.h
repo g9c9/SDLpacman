@@ -20,7 +20,7 @@ private:
     SDL_Event event;
 
     //Texture of pacman
-    SDL_Texture* pacman;
+    SDL_Texture* pacmanTexture;
 
     void Initialize();
     void LoadContent();
