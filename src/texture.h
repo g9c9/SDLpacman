@@ -9,7 +9,7 @@ using namespace std;
 class Texture {
 public:
     //Initializes variables
-    Texture();
+    Texture(string, SDL_Renderer*);
     ~Texture();
 
     //Loads image at specified path

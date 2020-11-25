@@ -1,9 +1,10 @@
 #include "texture.h"
 
-Texture::Texture() {
+Texture::Texture(string path, SDL_Renderer* renderer) {
     texture = nullptr;
     width = 0;
     height = 0;
+    loadFromFile(path, renderer);
 }
 
 Texture::~Texture() {
