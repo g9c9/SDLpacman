@@ -13,13 +13,10 @@ public:
     ~Texture();
 
     //Loads image at specified path
-    bool loadFromFile(string path);
-
-    //Deallocates texture
-    void free();
+    bool loadFromFile(string, SDL_Renderer*);
 
     //Renders texture at given point
-    void render(const int, const int) const;
+    void render(SDL_Renderer*, const int, const int) const;
 
     //Gets image dimensions
     int getWidth();
@@ -29,8 +26,11 @@ private:
     SDL_Texture* texture;
 
     //Image dimensions
-    int Width;
-    int Height;
+    int width;
+    int height;
+
+    //Deallocates texture
+    void free();
 };
 
 #endif
