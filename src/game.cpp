@@ -1,22 +1,22 @@
 #include "game.h"
 
 Game::Game() {
-    Initialize();
-    LoadContent();
+    initialize();
+    loadContent();
 }
 
 Game::~Game() {
-    CleanAndQuit();
+    cleanAndQuit();
 }
 
 void Game::Run() {
     while (isRunning) {
-        Update();
-        Draw();
+        update();
+        draw();
     }
 }
 
-void Game::Initialize() {
+void Game::initialize() {
     SDL_Init(SDL_INIT_EVERYTHING);
 
     window = SDL_CreateWindow("Pacman", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_SHOWN);
@@ -33,29 +33,29 @@ void Game::Initialize() {
     IMG_Init(IMG_INIT_PNG);
 }
 
-void Game::LoadContent() {
+void Game::loadContent() {
     pacmanTexture = LoadTexture("Content/pacman.png");
 }
 
-void Game::Update() {
+void Game::update() {
     while (SDL_PollEvent(&event))
     {
         switch (event.type)
         {
         case SDL_QUIT:
-            Exit();
+            exit();
             break;
 
         case SDL_KEYDOWN:
             if (event.key.keysym.sym == SDLK_ESCAPE)
             {
-                Exit();
+                exit();
             }
         }
     }
 }
 
-void Game::Draw() {
+void Game::draw() {
     //Clear screen
     SDL_RenderClear(renderer);
     
@@ -66,11 +66,11 @@ void Game::Draw() {
     SDL_RenderPresent(renderer);
 }
 
-void Game::Exit() {
+void Game::exit() {
     isRunning = false;
 }
 
-void Game::CleanAndQuit() {
+void Game::cleanAndQuit() {
     //Free loaded images
     SDL_DestroyTexture(pacmanTexture);
     pacmanTexture = nullptr;
@@ -91,12 +91,12 @@ SDL_Texture* Game::LoadTexture(string path) {
     
     SDL_Surface* loadedSurface = IMG_Load(path.c_str());
     if(loadedSurface == nullptr) {
-        Exit();
+        exit();
     }
     else {
         newTexture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
         if(newTexture == nullptr) {
-            Exit();
+            exit();
         }
         SDL_FreeSurface(loadedSurface);
     }

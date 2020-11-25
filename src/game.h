@@ -22,12 +22,12 @@ private:
     //Texture of pacman
     SDL_Texture* pacmanTexture;
 
-    void Initialize();
-    void LoadContent();
-    void Update();
-    void Draw();
-    void Exit();
-    void CleanAndQuit();
+    void initialize();
+    void loadContent();
+    void update();
+    void draw();
+    void exit();
+    void cleanAndQuit();
 
     SDL_Texture* LoadTexture(string);
 };
