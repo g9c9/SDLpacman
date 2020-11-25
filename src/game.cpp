@@ -34,7 +34,7 @@ void Game::initialize() {
 }
 
 void Game::loadContent() {
-    pacmanTexture = LoadTexture("Content/pacman.png");
+    pacmanTexture = new Texture("Content/pacman.png", renderer);
 }
 
 void Game::update() {
@@ -60,7 +60,7 @@ void Game::draw() {
     SDL_RenderClear(renderer);
     
     //Render texture to screen
-    SDL_RenderCopy(renderer, pacmanTexture, NULL, NULL);
+    pacmanTexture->render(renderer, 0, 0);
 
     //Update screen
     SDL_RenderPresent(renderer);
@@ -72,7 +72,7 @@ void Game::exit() {
 
 void Game::cleanAndQuit() {
     //Free loaded images
-    SDL_DestroyTexture(pacmanTexture);
+    pacmanTexture->~Texture();
     pacmanTexture = nullptr;
 
     //Destroy Window
@@ -84,21 +84,4 @@ void Game::cleanAndQuit() {
     //Quit SDL subsystems
     IMG_Quit();
     SDL_Quit();
-}
-
-SDL_Texture* Game::LoadTexture(string path) {
-    SDL_Texture* newTexture = nullptr;
-    
-    SDL_Surface* loadedSurface = IMG_Load(path.c_str());
-    if(loadedSurface == nullptr) {
-        exit();
-    }
-    else {
-        newTexture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
-        if(newTexture == nullptr) {
-            exit();
-        }
-        SDL_FreeSurface(loadedSurface);
-    }
-    return newTexture;
 }

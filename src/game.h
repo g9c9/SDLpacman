@@ -3,6 +3,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <string>
+#include "texture.h"
 using namespace std;
 
 class Game {
@@ -20,7 +21,7 @@ private:
     SDL_Event event;
 
     //Texture of pacman
-    SDL_Texture* pacmanTexture;
+    Texture* pacmanTexture;
 
     void initialize();
     void loadContent();
@@ -28,8 +29,6 @@ private:
     void draw();
     void exit();
     void cleanAndQuit();
-
-    SDL_Texture* LoadTexture(string);
 };
 
 #endif
