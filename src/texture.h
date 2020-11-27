@@ -3,6 +3,7 @@
 #define TEXTURE_H
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 #include <string>
 using namespace std;
 
@@ -14,6 +15,9 @@ public:
 
     //Loads image at specified path
     bool loadFromFile(string, SDL_Renderer*);
+
+    //Creates image from font string
+    bool loadFromRenderedText(string, SDL_Color, TTF_Font*, SDL_Renderer*);
 
     //Renders texture at given point
     void render(SDL_Renderer*, const int, const int) const;

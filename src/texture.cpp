@@ -30,8 +30,30 @@ bool Texture::loadFromFile(string path, SDL_Renderer* renderer) {
         width = loadedSurface->w;
         height = loadedSurface->h;
         SDL_FreeSurface(loadedSurface);
-        return true;
     }
+    return true;
+}
+
+bool Texture::loadFromRenderedText(string text, SDL_Color textColor, TTF_Font* font, SDL_Renderer* renderer) {
+    //Get rid of preexisting texture if there is any
+    free();
+
+    //Render text surface
+    SDL_Surface* textSurface = TTF_RenderText_Solid(font, text.c_str(), textColor);
+    if (textSurface == nullptr) {
+        return false;
+    }
+    else {
+        //Create texture from surface pixels
+        texture = SDL_CreateTextureFromSurface(renderer, textSurface);
+        if (texture == nullptr) {
+            return false;
+        }
+        width = textSurface->w;
+        height = textSurface->h;
+        SDL_FreeSurface(textSurface);
+    }
+    return true;
 }
 
 void Texture::free() {
