@@ -10,7 +10,7 @@ using namespace std;
 class Texture {
 public:
     //Initializes variables
-    Texture(string, SDL_Renderer*);
+    Texture();
     ~Texture();
 
     //Loads image at specified path
@@ -21,6 +21,9 @@ public:
 
     //Renders texture at given point
     void render(SDL_Renderer*, const int, const int) const;
+
+    //Deallocates texture
+    void free();
 
     //Gets image dimensions
     int getWidth();
@@ -33,8 +36,7 @@ private:
     int width;
     int height;
 
-    //Deallocates texture
-    void free();
+    
 };
 
 #endif
