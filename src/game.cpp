@@ -33,24 +33,16 @@ void Game::initialize() {
     IMG_Init(IMG_INIT_PNG);
 
     //Initialize ttf loading
-    if(TTF_Init() == -1) {
-        exit();
-    }
+    TTF_Init();
 }
 
 void Game::loadContent() {
     pacmanTexture.loadFromFile("Content/pacman.png", renderer);
     font = TTF_OpenFont("Content/PressStart2P.ttf", 10);
-    if (font == nullptr) {
-        exit();
-    }
-    else {
-        //Render text to texture of text
-        SDL_Color textColor = {255, 255, 255};
-        if (!textTexture.loadFromRenderedText("Press Start", textColor, font, renderer)) {
-            exit();
-        }
-    }
+    
+    //Render text to texture of text
+    SDL_Color textColor = {255, 255, 255};
+    textTexture.loadFromRenderedText("Press Start", textColor, font, renderer);   
 }
 
 void Game::update() {
