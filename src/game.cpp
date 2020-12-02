@@ -11,8 +11,8 @@ Game::~Game() {
 
 void Game::Run() {
     while (isRunning) {
-        startTime = SDL_GetTicks();
         update();
+        startTime = SDL_GetTicks();
         draw();
     }
 }
