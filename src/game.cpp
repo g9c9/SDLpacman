@@ -11,7 +11,7 @@ Game::~Game() {
 
 void Game::Run() {
     while (isRunning) {
-        //startTime = SDL_GetTicks();
+        startTime = SDL_GetTicks();
         update();
         draw();
     }
@@ -59,10 +59,6 @@ void Game::update() {
             if (event.key.keysym.sym == SDLK_ESCAPE)
             {
                 exit();
-            }
-            else if(event.key.keysym.sym == SDLK_RETURN)
-            {
-                startTime = SDL_GetTicks();
             }
         }
     }
