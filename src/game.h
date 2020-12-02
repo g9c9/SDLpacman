@@ -5,6 +5,7 @@
 #include <SDL2/SDL_ttf.h>
 #include <string>
 #include "texture.h"
+#include <sstream>
 using namespace std;
 
 class Game {
@@ -32,6 +33,15 @@ private:
 
     //Texture for rendered text
     Texture textTexture;
+
+    //Color for text
+    SDL_Color textColor;
+
+    //Current start time
+    Uint32 startTime = 0;
+
+    //In memory text stream
+    stringstream timeText;
 
     void initialize();
     void loadContent();

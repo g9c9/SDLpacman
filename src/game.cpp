@@ -11,6 +11,7 @@ Game::~Game() {
 
 void Game::Run() {
     while (isRunning) {
+        //startTime = SDL_GetTicks();
         update();
         draw();
     }
@@ -41,7 +42,7 @@ void Game::loadContent() {
     font = TTF_OpenFont("Content/PressStart2P.ttf", 10);
     
     //Render text to texture of text
-    SDL_Color textColor = {232, 178, 178};
+    textColor = {232, 178, 178};
     textTexture.loadFromRenderedText("Press Start", textColor, font, renderer);   
 }
 
@@ -59,8 +60,17 @@ void Game::update() {
             {
                 exit();
             }
+            else if(event.key.keysym.sym == SDLK_RETURN)
+            {
+                startTime = SDL_GetTicks();
+            }
         }
     }
+    //Update logic
+    timeText.str("");
+    timeText << SDL_GetTicks() - startTime << " ms";
+    //Render text
+    textTexture.loadFromRenderedText(timeText.str().c_str(), textColor, font, renderer);
 }
 
 void Game::draw() {
