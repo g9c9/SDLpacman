@@ -41,7 +41,7 @@ void Game::loadContent() {
     font = TTF_OpenFont("Content/PressStart2P.ttf", 10);
     
     //Render text to texture of text
-    SDL_Color textColor = {255, 255, 255};
+    SDL_Color textColor = {232, 178, 178};
     textTexture.loadFromRenderedText("Press Start", textColor, font, renderer);   
 }
 
