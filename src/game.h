@@ -40,9 +40,6 @@ private:
     //Current start time
     Uint64 startTime = 0;
 
-    //Current time
-    Uint64 now;
-
     //deltaTime
     double deltaTime = 0;
 
