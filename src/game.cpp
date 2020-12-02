@@ -12,7 +12,7 @@ Game::~Game() {
 void Game::Run() {
     while (isRunning) {
         update();
-        startTime = SDL_GetTicks();
+        startTime = SDL_GetPerformanceCounter();
         draw();
     }
 }
@@ -29,6 +29,8 @@ void Game::initialize() {
     font = nullptr;
 
     isRunning = true;
+
+    now = SDL_GetPerformanceCounter();
 
     //Initialize PNG loading
     IMG_Init(IMG_INIT_PNG);
@@ -63,8 +65,10 @@ void Game::update() {
         }
     }
     //Update logic
+    now = SDL_GetPerformanceCounter();
+    deltaTime = (double)((now - startTime)*1000 / (double)SDL_GetPerformanceFrequency());
     timeText.str("");
-    timeText << SDL_GetTicks() - startTime << " ms";
+    timeText << deltaTime << " ms";
     //Render text
     textTexture.loadFromRenderedText(timeText.str().c_str(), textColor, font, renderer);
 }

@@ -38,7 +38,13 @@ private:
     SDL_Color textColor;
 
     //Current start time
-    Uint32 startTime = 0;
+    Uint64 startTime = 0;
+
+    //Current time
+    Uint64 now;
+
+    //deltaTime
+    double deltaTime = 0;
 
     //In memory text stream
     stringstream timeText;
