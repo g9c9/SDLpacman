@@ -77,7 +77,7 @@ void Game::update() {
     }
 
     //Keyboard input logic
-    if(newKeyState[SDL_SCANCODE_ESCAPE]) {
+    if(keyJustPressed(SDL_SCANCODE_ESCAPE)) {
         exit();
     }
 
@@ -123,4 +123,16 @@ void Game::cleanAndQuit() {
     TTF_Quit();
     IMG_Quit();
     SDL_Quit();
+}
+
+bool Game::keyJustPressed(SDL_Scancode keyCode) {
+    return !oldKeyState[keyCode] && newKeyState[keyCode];
+}
+
+bool Game::keyHolding(SDL_Scancode keyCode) {
+    return oldKeyState[keyCode] && newKeyState[keyCode];
+}
+
+bool Game::keyLetGo(SDL_Scancode keyCode) {
+    return oldKeyState[keyCode] && !newKeyState[keyCode];
 }

@@ -56,6 +56,9 @@ private:
     void draw();
     void exit();
     void cleanAndQuit();
+    bool keyJustPressed(SDL_Scancode);
+    bool keyHolding(SDL_Scancode);
+    bool keyLetGo(SDL_Scancode);
 };
 
 #endif
