@@ -11,8 +11,18 @@ Game::~Game() {
 
 void Game::Run() {
     while (isRunning) {
+        //Deltatime logic
+        deltaTime = (double)((SDL_GetPerformanceCounter() - startTime)*1000 / (double)SDL_GetPerformanceFrequency());
+
+        //Keystate logic
+        newKeyState = SDL_GetKeyboardState(NULL);
+
         update();
+
+        oldKeyState = newKeyState;
+
         startTime = SDL_GetPerformanceCounter();
+
         draw();
     }
 }
@@ -29,6 +39,9 @@ void Game::initialize() {
     font = nullptr;
 
     isRunning = true;
+
+    oldKeyState = SDL_GetKeyboardState(NULL);
+    newKeyState = SDL_GetKeyboardState(NULL);
 
     //Initialize PNG loading
     IMG_Init(IMG_INIT_PNG);
@@ -55,15 +68,20 @@ void Game::update() {
             exit();
             break;
 
-        case SDL_KEYDOWN:
-            if (event.key.keysym.sym == SDLK_ESCAPE)
-            {
-                exit();
-            }
+        // case SDL_KEYDOWN:
+        //     if (event.key.keysym.sym == SDLK_ESCAPE)
+        //     {
+        //         exit();
+        //     }
         }
     }
+
+    //Keyboard input logic
+    if(newKeyState[SDL_SCANCODE_ESCAPE]) {
+        exit();
+    }
+
     //Update logic
-    deltaTime = (double)((SDL_GetPerformanceCounter() - startTime)*1000 / (double)SDL_GetPerformanceFrequency());
     timeText.str("");
     timeText << deltaTime << " ms";
     //Render text

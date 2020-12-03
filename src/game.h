@@ -46,6 +46,10 @@ private:
     //In memory text stream
     stringstream timeText;
 
+    //Key states
+    const Uint8* oldKeyState;
+    const Uint8* newKeyState;
+
     void initialize();
     void loadContent();
     void update();
