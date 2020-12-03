@@ -40,7 +40,6 @@ void Game::initialize() {
 
     isRunning = true;
 
-    oldKeyState = SDL_GetKeyboardState(NULL);
     newKeyState = SDL_GetKeyboardState(NULL);
 
     //Initialize PNG loading
@@ -112,6 +111,9 @@ void Game::cleanAndQuit() {
     //Free font
     TTF_CloseFont(font);
     font = nullptr;
+
+    //Free keyboard state pointers
+    newKeyState = nullptr;
 
     //Destroy Window
     SDL_DestroyRenderer(renderer);

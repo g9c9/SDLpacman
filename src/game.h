@@ -6,6 +6,7 @@
 #include <string>
 #include "texture.h"
 #include <sstream>
+#include "keystate.h"
 using namespace std;
 
 class Game {
@@ -47,8 +48,8 @@ private:
     stringstream timeText;
 
     //Key states
-    const Uint8* oldKeyState;
     const Uint8* newKeyState;
+    KeyState oldKeyState;
 
     void initialize();
     void loadContent();
