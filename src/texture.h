@@ -20,7 +20,7 @@ public:
     bool loadFromRenderedText(string, SDL_Color, TTF_Font*, SDL_Renderer*);
 
     //Renders texture at given point
-    void render(SDL_Renderer*, const int, const int) const;
+    virtual void render(SDL_Renderer*, const int, const int) const;
 
     //Deallocates texture
     void free();
@@ -28,7 +28,7 @@ public:
     //Gets image dimensions
     int getWidth();
     int getHeight();
-private:
+protected:
     //The actual hardware texture
     SDL_Texture* texture;
 
