@@ -51,7 +51,7 @@ void Game::initialize() {
 
 void Game::loadContent() {
     pacmanTexture.loadFromFile("Content/pacman.png", renderer);
-    animPacmanTexture.loadFromFile("Content/eating.png", 5, 0.1, 16, 16, renderer);
+    animPacmanTexture.loadFromFile("Content/eating.png", 5, PACMAN_EATING_SPF, 16, 16, renderer);
     font = TTF_OpenFont("Content/PressStart2P.ttf", 10);
     
     //Render text to texture of text

@@ -5,6 +5,7 @@ AnimTexture::AnimTexture() {
     frames = 0;
     frameWidth = 0;
     frameHeight = 0;
+    SpF = 0;
 }
 
 AnimTexture::~AnimTexture() {

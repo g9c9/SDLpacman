@@ -20,6 +20,9 @@ private:
     const int SCREEN_WIDTH = 800;
     const int SCREEN_HEIGHT = 600;
 
+    //In terms of milliseconds
+    const double PACMAN_EATING_SPF = 50;
+
     SDL_Window* window;
     SDL_Renderer* renderer;
 
