@@ -42,6 +42,9 @@ void Game::initialize() {
 
     newKeyState = SDL_GetKeyboardState(NULL);
 
+    //Initialize pacman state
+    pstate = F;
+
     //Initialize PNG loading
     IMG_Init(IMG_INIT_PNG);
 
@@ -82,8 +85,30 @@ void Game::update() {
     }
 
     //Update logic
-    timer += deltaTime;
-    animPacmanTexture.update(timer);
+    //Keyboard logic for pacman
+    if(keyJustPressed(SDL_SCANCODE_D) || keyHolding(SDL_SCANCODE_D)) {
+        pstate = MR;
+    }
+    else if(keyJustPressed(SDL_SCANCODE_A) || keyHolding(SDL_SCANCODE_A)) {
+        pstate = ML;
+    }
+    else if(keyJustPressed(SDL_SCANCODE_W) || keyHolding(SDL_SCANCODE_W)) {
+        pstate = MU;
+    }
+    else if(keyJustPressed(SDL_SCANCODE_S) || keyHolding(SDL_SCANCODE_S)) {
+        pstate = MD;
+    }
+    else {
+        pstate = F;
+    }
+
+    if(pstate == F) {
+        timer = 0;
+    }
+    else {
+        timer += deltaTime;
+        animPacmanTexture.update(timer);
+    }
 }
 
 void Game::draw() {
@@ -92,8 +117,24 @@ void Game::draw() {
     
     //Render texture to screen
     //pacmanTexture.render(renderer, (SCREEN_WIDTH - pacmanTexture.getWidth())/2, (SCREEN_HEIGHT - pacmanTexture.getHeight())/2);
-    animPacmanTexture.render(renderer, (SCREEN_WIDTH - pacmanTexture.getWidth())/2, (SCREEN_HEIGHT - pacmanTexture.getHeight())/2);
+    //animPacmanTexture.render(renderer, (SCREEN_WIDTH - pacmanTexture.getWidth())/2, (SCREEN_HEIGHT - pacmanTexture.getHeight())/2);
     //textTexture.render(renderer, (SCREEN_WIDTH - textTexture.getWidth())/2, (SCREEN_HEIGHT - textTexture.getHeight())/2);
+    if(pstate == F) {
+        pacmanTexture.render(renderer, (SCREEN_WIDTH - pacmanTexture.getWidth())/2, (SCREEN_HEIGHT - pacmanTexture.getHeight())/2, 0, NULL, SDL_FLIP_NONE);
+    }
+    else if(pstate == MR) {
+        animPacmanTexture.render(renderer, (SCREEN_WIDTH - pacmanTexture.getWidth())/2, (SCREEN_HEIGHT - pacmanTexture.getHeight())/2, 0, NULL, SDL_FLIP_NONE);
+    }
+    else if(pstate == ML) {
+        animPacmanTexture.render(renderer, (SCREEN_WIDTH - pacmanTexture.getWidth())/2, (SCREEN_HEIGHT - pacmanTexture.getHeight())/2, 0, NULL, SDL_FLIP_HORIZONTAL);
+    }
+    else if(pstate == MU) {
+        animPacmanTexture.render(renderer, (SCREEN_WIDTH - pacmanTexture.getWidth())/2, (SCREEN_HEIGHT - pacmanTexture.getHeight())/2, -90, NULL, SDL_FLIP_NONE);
+    }
+    else if(pstate == MD) {
+        animPacmanTexture.render(renderer, (SCREEN_WIDTH - pacmanTexture.getWidth())/2, (SCREEN_HEIGHT - pacmanTexture.getHeight())/2, -90, NULL, SDL_FLIP_HORIZONTAL);
+    }
+    
 
     //Update screen
     SDL_RenderPresent(renderer);

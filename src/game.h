@@ -23,6 +23,9 @@ private:
     //In terms of milliseconds
     const double PACMAN_EATING_SPF = 50;
 
+    enum PState {F, MU, MD, ML, MR};
+    PState pstate;
+
     SDL_Window* window;
     SDL_Renderer* renderer;
 
