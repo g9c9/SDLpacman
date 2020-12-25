@@ -5,6 +5,7 @@
 #include <SDL2/SDL_ttf.h>
 #include <string>
 #include "texture.h"
+#include "animtexture.h"
 #include <sstream>
 #include "keystate.h"
 using namespace std;
@@ -29,6 +30,9 @@ private:
     //Texture of pacman
     Texture pacmanTexture;
 
+    //Animated Texture of pacman
+    AnimTexture animPacmanTexture;
+
     //Font
     TTF_Font* font;
 
@@ -43,6 +47,9 @@ private:
 
     //deltaTime
     double deltaTime = 0;
+
+    //Timer for pacman
+    double timer;
 
     //In memory text stream
     stringstream timeText;

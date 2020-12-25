@@ -8,7 +8,7 @@ public:
     ~AnimTexture();
 
     //Loads image at specified path and initializes animated texture
-    bool loadFromFile(string, int, double, int, int, SDL_Renderer*);
+    bool loadFromFile(string path, int frames, double SpF, int frameWidth, int frameHeight, SDL_Renderer* renderer);
 
     void update(double &);
 

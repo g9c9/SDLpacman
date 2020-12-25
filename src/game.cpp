@@ -51,6 +51,7 @@ void Game::initialize() {
 
 void Game::loadContent() {
     pacmanTexture.loadFromFile("Content/pacman.png", renderer);
+    animPacmanTexture.loadFromFile("Content/eating.png", 5, 0.1, 16, 16, renderer);
     font = TTF_OpenFont("Content/PressStart2P.ttf", 10);
     
     //Render text to texture of text
@@ -81,7 +82,8 @@ void Game::update() {
     }
 
     //Update logic
-    
+    timer += deltaTime;
+    animPacmanTexture.update(timer);
 }
 
 void Game::draw() {
@@ -89,7 +91,8 @@ void Game::draw() {
     SDL_RenderClear(renderer);
     
     //Render texture to screen
-    pacmanTexture.render(renderer, (SCREEN_WIDTH - pacmanTexture.getWidth())/2, (SCREEN_HEIGHT - pacmanTexture.getHeight())/2);
+    //pacmanTexture.render(renderer, (SCREEN_WIDTH - pacmanTexture.getWidth())/2, (SCREEN_HEIGHT - pacmanTexture.getHeight())/2);
+    animPacmanTexture.render(renderer, (SCREEN_WIDTH - pacmanTexture.getWidth())/2, (SCREEN_HEIGHT - pacmanTexture.getHeight())/2);
     //textTexture.render(renderer, (SCREEN_WIDTH - textTexture.getWidth())/2, (SCREEN_HEIGHT - textTexture.getHeight())/2);
 
     //Update screen
@@ -103,6 +106,7 @@ void Game::exit() {
 void Game::cleanAndQuit() {
     //Free loaded images
     pacmanTexture.free();
+    animPacmanTexture.free();
     textTexture.free();
 
     //Free font
