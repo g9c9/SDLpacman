@@ -81,10 +81,7 @@ void Game::update() {
     }
 
     //Update logic
-    timeText.str("");
-    timeText << deltaTime << " ms";
-    //Render text
-    textTexture.loadFromRenderedText(timeText.str().c_str(), textColor, font, renderer);
+    
 }
 
 void Game::draw() {
@@ -92,8 +89,8 @@ void Game::draw() {
     SDL_RenderClear(renderer);
     
     //Render texture to screen
-    pacmanTexture.render(renderer, 0, 0);
-    textTexture.render(renderer, (SCREEN_WIDTH - textTexture.getWidth())/2, (SCREEN_HEIGHT - textTexture.getHeight())/2);
+    pacmanTexture.render(renderer, (SCREEN_WIDTH - pacmanTexture.getWidth())/2, (SCREEN_HEIGHT - pacmanTexture.getHeight())/2);
+    //textTexture.render(renderer, (SCREEN_WIDTH - textTexture.getWidth())/2, (SCREEN_HEIGHT - textTexture.getHeight())/2);
 
     //Update screen
     SDL_RenderPresent(renderer);
