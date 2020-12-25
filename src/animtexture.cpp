@@ -50,8 +50,8 @@ void AnimTexture::update(double &deltaTime) {
     }
 }
 
-void AnimTexture::render(SDL_Renderer* renderer, int x, int y) const {
+void AnimTexture::render(SDL_Renderer* renderer, int x, int y, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE) const {
     SDL_Rect clip = {index * frameWidth, 0, frameWidth, frameHeight};
     SDL_Rect renderQuad = {x, y, frameWidth, frameHeight};
-    SDL_RenderCopy(renderer, texture, &clip, &renderQuad);
+    SDL_RenderCopyEx(renderer, texture, &clip, &renderQuad, angle, center, flip);
 }

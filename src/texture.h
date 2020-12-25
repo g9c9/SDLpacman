@@ -20,7 +20,7 @@ public:
     bool loadFromRenderedText(string, SDL_Color, TTF_Font*, SDL_Renderer*);
 
     //Renders texture at given point
-    virtual void render(SDL_Renderer*, const int, const int) const;
+    virtual void render(SDL_Renderer* renderer, int x, int y, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE) const;
 
     //Deallocates texture
     void free();

@@ -12,7 +12,7 @@ public:
 
     void update(double &);
 
-    virtual void render(SDL_Renderer*, const int, const int) const;
+    virtual void render(SDL_Renderer* renderer, int x, int y, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE) const;
 
 private:
     int index;

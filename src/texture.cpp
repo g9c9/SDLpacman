@@ -64,10 +64,10 @@ void Texture::free() {
     }
 }
 
-void Texture::render(SDL_Renderer* renderer, int x, int y) const {
+void Texture::render(SDL_Renderer* renderer, int x, int y, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE) const {
     //Set rendering space and render to screen
     SDL_Rect renderQuad = {x, y, width, height};
-    SDL_RenderCopy(renderer, texture, NULL, &renderQuad);
+    SDL_RenderCopyEx(renderer, texture, NULL, &renderQuad, angle, center, flip);
 }
 
 int Texture::getWidth() {
